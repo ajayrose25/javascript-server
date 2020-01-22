@@ -1,5 +1,5 @@
 # express-server
- **Features of VS Code**
+ ##Features of VS Code
 
 1.A very helpful syntax highlighter and autocomplete feature that provides smart completions based on variable types, function definitions, and imported modules.
 
@@ -11,13 +11,14 @@
 
 5.The ability to work with a full featured integrated terminal let's you run everything you normally would from your terminal of choice. 
 
-**Useful Plugins of VS Code**
+##Useful Plugins of VS Code
 
-1.Atom Keymap
+1.**Atom Keymap**
   This extension will make VS Code use Atom keyboard shortcuts after installing and restarting.
 
-2.Git Easy
-  Imports the following git commands for you to use from the command palette. 
+2.**Git Easy**
+  Imports the following git commands for you to use from the command palette.
+  ``` 
     Git Easy: Init
     Git Easy: Add Origin
     Git Easy: Add Remote
@@ -32,21 +33,21 @@
     Git Easy: Change/Checkout Existing Branch
     Git Easy: Log All
     Git Easy: Log Current File
-
-3.Sublime Keymap
+    ```
+3.**Sublime Keymap**
   This extension will install Sublime Text keyboard shortcuts in VS Code after installing and restarting.
 
-4.AutoFileName
+4.**AutoFileName**
   When requiring local files this will give you autocomplete options based on the file path you type in.
 
-5.ESLint
+5.**ESLint**
   Adds support for ESLint and should start working automatically after installing and reloading VS Code.
 
-6.Open-in-Browser
+6.**Open-in-Browser**
   VSCode doesn't offer any built-in interface for opening files directly in the browser. This extension adds a Open With Default Browser item to the contextual menu, as well as command palette options for opening in a client of your choice (Firefox, Chrome, IE). 
 
-7.Faker
+7.**Faker**
   Quickly insert placeholder data using the popular Faker JavaScript library. You can generate random names, addresses, images, phone numbers, or just paragraphs of classic Lorem Ipsum. 
 
-8.CSS Peek
+8.**CSS Peek**
   WIth this extension you can trace the definitions of CSS classes and ids in your stylesheets. When you right click on a selector in your HTML files, choosing the options Go to Definition and Peek definition will send you to the CSS code in which you've styled them.
