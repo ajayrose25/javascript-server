@@ -1,5 +1,5 @@
 # express-server
- ##Features of VS Code
+ ## Features of VS Code
 
 1.A very helpful syntax highlighter and autocomplete feature that provides smart completions based on variable types, function definitions, and imported modules.
 
@@ -11,7 +11,7 @@
 
 5.The ability to work with a full featured integrated terminal let's you run everything you normally would from your terminal of choice. 
 
-##Useful Plugins of VS Code
+## Useful Plugins of VS Code
 
 1.**Atom Keymap**
   This extension will make VS Code use Atom keyboard shortcuts after installing and restarting.
@@ -33,7 +33,8 @@
     Git Easy: Change/Checkout Existing Branch
     Git Easy: Log All
     Git Easy: Log Current File
-    ```
+    
+  ```
 3.**Sublime Keymap**
   This extension will install Sublime Text keyboard shortcuts in VS Code after installing and restarting.
 
