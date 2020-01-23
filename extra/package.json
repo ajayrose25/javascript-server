@@ -1,0 +1,14 @@
+{
+  "name": "javascript-server",
+  "version": "1.0.0",
+  "description": "basic training and handson repositry for practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "execute": "node ~/javascript-server/extra/patterns/diamond.js",
+    "equi": "node ~/javascript-server/extra/patterns/equilateral.js"
+  },
+  "author": "ajay",
+  "license": "ISC"
+}
+
