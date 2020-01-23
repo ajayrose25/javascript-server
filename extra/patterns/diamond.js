@@ -38,5 +38,12 @@ let d=process.argv[2];//takes input the number of rows
     else{
         process.stdout.write("please enter a number between 2 and 10");
     }
+    /*output
+       *
+      ***    
+     *****
+      ***
+       *
+    */
     
 
