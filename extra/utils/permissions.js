@@ -1,4 +1,4 @@
-const permissions = {
+const permissions = {     //Permissions is a object having various arrays and it is used to check all operations a person can perform
     'getUsers': {
     all: ['head-trainer'],
     read : ['trainee', 'trainer'],
@@ -6,9 +6,9 @@ const permissions = {
     delete: [],
     }
     }
-    function haspermission(modulename,role,permissiontype)
+    function HasPermission(ModuleName,role,PermissionType)
     {
-        let roles=modulename[permissiontype];
+        let roles=ModuleName[PermissionType];
         let decide=false;
         roles.forEach(element => {
         if(element===role){
@@ -20,7 +20,7 @@ const permissions = {
 
     }
     const {getUsers} = permissions
-    console.log(haspermission(getUsers,"trainee","read"))
-    console.log(haspermission(getUsers,"trainee","write"))
-    console.log(haspermission(getUsers,"trainer","read"))
-    console.log(haspermission(getUsers,"trainee","all"))
+    console.log(HasPermission(getUsers,"trainee","read"))
+    console.log(HasPermission(getUsers,"trainee","write"))
+    console.log(HasPermission(getUsers,"trainer","read"))
+    console.log(HasPermission(getUsers,"trainee","all"))
