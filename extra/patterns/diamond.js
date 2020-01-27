@@ -1,5 +1,5 @@
 let n,space=1;
-function diamond(n)
+export default function diamond(n)
 {
     space=n-1;
     for(let i=1;i<=n;i++)//loop to move down vertically till the number of rows
@@ -33,7 +33,7 @@ function diamond(n)
 }
 let d=process.argv[2];//takes input the number of rows
     if(d>=2 && d<=10){
-    diamond(d);
+
     }
     else{
         process.stdout.write("please enter a number between 2 and 10");

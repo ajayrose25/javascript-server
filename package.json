@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:diamond": "node ~/training/js/javascript-server/extra/patterns/diamond.js",
-    "start:equilateral": "node ~/training/js/javascript-server/extra/patterns/equilateral.js"
+    "start:equilateral": "node ~/training/js/javascript-server/extra/patterns/equilateral.js",
+    "start:index": "npx babel-node ~/training/js/javascript-server/extra"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/ajayrose25/javascript-server/issues"
   },
-  "homepage": "https://github.com/ajayrose25/javascript-server#readme"
+  "homepage": "https://github.com/ajayrose25/javascript-server#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/node": "^7.8.3",
+    "@babel/preset-env": "^7.8.3"
+  }
 }
