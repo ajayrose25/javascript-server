@@ -6,9 +6,9 @@ const permissions = {     //Permissions is a object having various arrays and it
     delete: [],
     }
     }
-    function HasPermission(ModuleName,role,PermissionType)
+    function hasPermission(moduleName,role,permissionType)
     {
-        let roles=ModuleName[PermissionType];
+        let roles=moduleName[permissionType];
         let decide=false;
         roles.forEach(element => {
         if(element===role){
@@ -20,7 +20,7 @@ const permissions = {     //Permissions is a object having various arrays and it
 
     }
     const {getUsers} = permissions
-    console.log(HasPermission(getUsers,"trainee","read"))
-    console.log(HasPermission(getUsers,"trainee","write"))
-    console.log(HasPermission(getUsers,"trainer","read"))
-    console.log(HasPermission(getUsers,"trainee","all"))
+    console.log(hasPermission(getUsers,"trainee","read"))
+    console.log(hasPermission(getUsers,"trainee","write"))
+    console.log(hasPermission(getUsers,"trainer","read"))
+    console.log(hasPermission(getUsers,"trainee","all"))
