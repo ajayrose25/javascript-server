@@ -15,7 +15,7 @@ reviewerEmail : "reviewer3@successive.tech"},
 traineeEmail : "trainee4@successive.tech",
 reviewerEmail : "reviewer4@successive.tech"},
 ];   
-function ValidateEmail(mail) 
+function validateEmail(mail) 
 {
  let ab = /([a-zA-Z0-9])+@(successive)\.(tech)/g;
 
@@ -23,11 +23,11 @@ function ValidateEmail(mail)
    else return false
 }
 
-function ValidateUsers(users){
+function validateUsers(users){
     let validUsers = [];
     let inValidUsers = [];
     users.forEach(function(value){
-        if(ValidateEmail(value.reviewerEmail) && ValidateEmail(value.traineeEmail)){
+        if(validateEmail(value.reviewerEmail) && validateEmail(value.traineeEmail)){
             validUsers.push(value);
         }
         else {
@@ -38,4 +38,4 @@ function ValidateUsers(users){
     console.log("inValidUsers: ",inValidUsers.length);
 
 }
-console.log("function call: ",validateusers(users));
+console.log("function call: ",validateUsers(users));
