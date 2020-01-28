@@ -1,5 +1,5 @@
 let n,space=1;
-function equilateral(n)
+export default function equilateral(n)
 {
     space=n-1;
     for(let i=1;i<=n;i++)//loop to move down vertically till the number of rows
@@ -18,7 +18,7 @@ function equilateral(n)
     }
 }   let d=process.argv[2];//loop to print star after the relevant spaces are printed
     if(d>=2 && d<=10){
-    equilateral(d);
+    
     }
     else{
         process.stdout.write("please enter a number between 2 and 10");
@@ -27,4 +27,4 @@ function equilateral(n)
 output
   * 
  * *  
-* * *
+* * **/
