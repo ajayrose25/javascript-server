@@ -1,14 +1,19 @@
-interface Ipermissions {
-  getUsers: Igetusers;
+export interface IPermissions {
+[getUsers: string ]: {
+    all: string[];
+    read: string[];
+    write: string[];
+    delete: string[];
+  };
 }
 
-interface Igetusers {
+/*interface Igetusers {
   all: string[];
   read: string[];
   write: string[];
   delete: string[];
-}
+}*/
 
-interface Iusers {
+export interface Iusers {
   [index: number]: { traineeEmail: string; reviewerEmail: string };
 }
