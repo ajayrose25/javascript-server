@@ -9,6 +9,7 @@ console.log(hasPermission(permissions.getUsers, 'trainee', 'write'));
 console.log(hasPermission(permissions.getUsers, 'trainer', 'read'));
 console.log(hasPermission(permissions.getUsers, 'trainee', 'all'));
 
+import { Iusers } from './interfaces';
 const users: Iusers = [
   {
     traineeEmail: 'trainee1@successive.tech',
