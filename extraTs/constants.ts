@@ -1,4 +1,5 @@
-export const permissions: Ipermissions = {
+import { IPermissions } from './interfaces';
+export const permissions: IPermissions = {
   'getUsers': {
     all: ['head-trainer'],
     read: ['trainee', 'trainer'],
