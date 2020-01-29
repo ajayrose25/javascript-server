@@ -1,10 +1,10 @@
 import { validateEmail } from './helpers';
 
-export default function validateUsers(users: any): void {
-  console.log('----------inside validation', users);
+export default function validateUsers(Iusers: any): void {
+  console.log('----------inside validation', Iusers);
   const validUsers = [];
   const inValidUsers = [];
-  users.forEach((value) => {
+  Iusers.forEach((value) => {
 
     if (validateEmail(value.reviewerEmail) && validateEmail(value.traineeEmail)) {
       validUsers.push(value);
