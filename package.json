@@ -12,10 +12,15 @@
     "start:extraTs": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
     "nodemon": "nodemon ./dist/index.js",
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
-    "lint:fix": "npm run lint --fix",
-    "precommit": "npm run lint && npm test",
-    "prepush": "npm run lint"
+    "lint:fix": "npm run lint --fix"
   },
+  "husky": {
+      "hooks": {
+        "pre-commit": "npm test",
+        "pre-push": "npm test",
+        "...": "..."
+      }
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ajayrose25/javascript-server.git"
