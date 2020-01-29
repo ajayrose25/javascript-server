@@ -3,3 +3,5 @@ node_modules
 
 # ignore lock files
 package-lock.json
+
+dist

@@ -7,8 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:diamond": "node ~/training/js/javascript-server/extra/patterns/diamond.js",
     "start:equilateral": "node ~/training/js/javascript-server/extra/patterns/equilateral.js",
-    "start:index": "npx babel-node ~/training/js/javascript-server/extra"
+    "start:index": "npx babel-node ~/training/js/javascript-server/extra",
+    "start:extra": "babel-node extra",
+    "start:extraTs": "tsc-watch --project . --onSuccess \"npm run nodemon\"",
+    "nodemon": "nodemon ./dist/index.js",
+    "lint": "./node_modules/tslint/bin/tslint -c tslint.json -p tsconfig.json --exclude 'node_modules/**/*.{j,t}s'",
+    "lint:fix": "npm run lint --fix"
   },
+  "husky": {
+      "hooks": {
+        "pre-commit": "npm test",
+        "pre-push": "npm test",
+        "...": "..."
+      }
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ajayrose25/javascript-server.git"
@@ -23,6 +35,15 @@
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/node": "^7.8.3",
-    "@babel/preset-env": "^7.8.3"
+    "@babel/preset-env": "^7.8.3",
+    "tsc-watch": "^4.1.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@types/node": "^13.5.0",
+    "commitizen": "^4.0.3",
+    "husky": "^4.2.1",
+    "nodemon": "^2.0.2",
+    "tslint": "^6.0.0"
   }
 }
