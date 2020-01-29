@@ -6,5 +6,3 @@ export const permissions = {
   delete: [],
   }
 }
-
-const {getUsers} = permissions;
