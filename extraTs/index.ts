@@ -1,6 +1,8 @@
 import { diamond, equilateral } from './patterns';
 import { permissions } from './constants';
 import { hasPermission, validateUsers } from './utils';
+import { Iusers } from './interfaces';
+
 diamond(3);
 equilateral(3);
 
@@ -9,7 +11,6 @@ console.log(hasPermission(permissions.getUsers, 'trainee', 'write'));
 console.log(hasPermission(permissions.getUsers, 'trainer', 'read'));
 console.log(hasPermission(permissions.getUsers, 'trainee', 'all'));
 
-import { Iusers } from './interfaces';
 const users: Iusers = [
   {
     traineeEmail: 'trainee1@successive.tech',
