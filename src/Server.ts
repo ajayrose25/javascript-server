@@ -1,5 +1,7 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 import Iconfig from './config/iconfig';
+import { errorHandler, notFoundRoute } from './libs/routes/index';
 import { eventNames } from 'cluster';
 
 class Server {
@@ -9,6 +11,7 @@ class Server {
     }
     bootstrap() {
         this.setupRoutes();
+        this.initBodyParser();
         return this;
     }
     run = () => {
@@ -19,7 +22,14 @@ class Server {
             }
             console.log('app is running successfully on' , {port}, {env} );
         });
+        app.use( errorHandler );
+        app.use( notFoundRoute );
         return this;
+    }
+    initBodyParser = () => {
+        const{app} = this;
+        app.use(bodyParser.urlencoded({ extended: false }));
+        app.use(bodyParser.json());
     }
 
     setupRoutes() {
