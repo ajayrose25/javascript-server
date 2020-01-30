@@ -1,5 +1,6 @@
 import * as express from 'express';
 import Iconfig from './config/iconfig';
+import { eventNames } from 'cluster';
 
 class Server {
     private app: express.Express;
@@ -7,7 +8,6 @@ class Server {
         this.app = express();
     }
     bootstrap() {
-        console.log('inside bootstrap');
         this.setupRoutes();
         return this;
     }
@@ -17,7 +17,7 @@ class Server {
             if (err) {
                 throw err;
             }
-            console.log('app is running successfully');
+            console.log('app is running successfully on' , {port});
         });
         return this;
     }
