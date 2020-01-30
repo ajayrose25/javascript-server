@@ -10,24 +10,26 @@ class Server {
         this.app = express();
     }
     bootstrap() {
-        this.setupRoutes();
         this.initBodyParser();
+        this.setupRoutes();
+
         return this;
     }
     run = () => {
         const { app, config: { port, env } } = this;
-        app.listen(port, (err) => {
+        app.listen(9000, (err) => {
             if (err) {
                 throw err;
             }
-            console.log('app is running successfully on' , {port}, {env} );
+            console.log('app is running successfully on', { port }, { env });
         });
-        app.use( errorHandler );
-        app.use( notFoundRoute );
+        app.use(notFoundRoute);
+        app.use(errorHandler);
+
         return this;
     }
     initBodyParser = () => {
-        const{app} = this;
+        const { app } = this;
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
     }
@@ -39,5 +41,5 @@ class Server {
     }
 }
 
-export default Server ;
+export default Server;
 
