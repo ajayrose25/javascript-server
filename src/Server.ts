@@ -12,12 +12,12 @@ class Server {
         return this;
     }
     run = () => {
-        const { app, config: { port } } = this;
+        const { app, config: { port, env } } = this;
         app.listen(port, (err) => {
             if (err) {
                 throw err;
             }
-            console.log('app is running successfully on' , {port});
+            console.log('app is running successfully on' , {port}, {env} );
         });
         return this;
     }
