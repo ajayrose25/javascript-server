@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import Iconfig from './config/iconfig';
 import { errorHandler, notFoundRoute } from './libs/routes';
+import router from './router';
 import { eventNames } from 'cluster';
 
 class Server {
@@ -40,6 +41,7 @@ class Server {
             this.app.use(notFoundRoute);
             this.app.use(errorHandler);
         });
+        this.app.use('/api', router);
     }
 }
 
