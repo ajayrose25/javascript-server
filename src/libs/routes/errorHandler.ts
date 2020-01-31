@@ -1,14 +1,18 @@
 const errorHandler = ((err, req, res, next) => {
     console.log('Error', err);
-    const obj =  {
+
+    const { error, message, status, timestamp } = err;
+    const obj = {
         error: Error || 'undefined',
         message: err.error || err.message,
         status: 500,
         timestamp: new Date()
     };
-    const { error, message, status, timestamp } = obj;
     res.send({
-    obj
-});
+        obj
+    });
+    if (!req.headerSent) {
+        return next(error);
+    }
 });
 export default errorHandler;
