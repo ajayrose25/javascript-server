@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import Iconfig from './config/iconfig';
-import { errorHandler, notFoundRoute } from './libs/routes/index';
+import { errorHandler, notFoundRoute } from './libs/routes';
 import { eventNames } from 'cluster';
 
 class Server {
@@ -17,7 +17,7 @@ class Server {
     }
     run = () => {
         const { app, config: { port, env } } = this;
-        app.listen(9000, (err) => {
+        app.listen(port, (err) => {
             if (err) {
                 throw err;
             }
@@ -37,6 +37,8 @@ class Server {
     setupRoutes() {
         this.app.get('/health-check', (req: express.Request, res: express.Response) => {
             res.send('I am OK');
+            this.app.use(notFoundRoute);
+            this.app.use(errorHandler);
         });
     }
 }
