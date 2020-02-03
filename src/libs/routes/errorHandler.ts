@@ -8,9 +8,9 @@ const errorHandler = ((err, req, res, next) => {
         status: 500,
         timestamp: new Date()
     };
-    res.send({
+     res.send({
         obj
-    });
+     });
     if (!req.headerSent) {
         return next(error);
     }
