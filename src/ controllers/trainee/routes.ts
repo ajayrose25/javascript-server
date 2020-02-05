@@ -1,14 +1,19 @@
 import { Router } from 'express';
 import TraineeController from './Controller';
+import  { validationHandler }  from '../../libs/routes';
+import { validation } from './validation';
+// import {  authMiddleware }  from '../../libs/routes';
 import Controller from './Controller';
-
 const traineeRouter = Router();
+// authMiddleware('trainee', 'write'),
 
 traineeRouter.route('/')
-.get(TraineeController.create)
-.post(TraineeController.list)
+.get(validationHandler(validation.get), TraineeController.create)
+.post(validationHandler(validation.create), TraineeController.list)
 .delete(TraineeController.delete)
-.put(TraineeController.Update);
+.put(validationHandler(validation.update), TraineeController.Update);
+traineeRouter.delete('/:id', validationHandler(validation.delete), TraineeController.delete);
+// traineeRouter.post('/:var', validationHandler(validation.create), TraineeController.list);
 // TraineeController.get((TraineeController.create()) => { console.log('Inside get');  });
 // TraineeController.post(() => { console.log('Inside post');TraineeController.list(); });
 // TraineeController.put(() => { console.log('Inside put'); TraineeController.update(); });
