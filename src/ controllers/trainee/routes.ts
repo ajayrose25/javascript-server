@@ -2,13 +2,14 @@ import { Router } from 'express';
 import TraineeController from './Controller';
 import  { validationHandler }  from '../../libs/routes';
 import { validation } from './validation';
-// import {  authMiddleware }  from '../../libs/routes';
+import authMiddleware from '../../libs/routes/authMiddleware';
 import Controller from './Controller';
+import { permissions } from '../../libs/routes/constants';
 const traineeRouter = Router();
 // authMiddleware('trainee', 'write'),
 
 traineeRouter.route('/')
-.get(validationHandler(validation.get), TraineeController.create)
+.get(authMiddleware(permissions.getUsers, 'read'), validationHandler(validation.get), TraineeController.create)
 .post(validationHandler(validation.create), TraineeController.list)
 .delete(TraineeController.delete)
 .put(validationHandler(validation.update), TraineeController.Update);
