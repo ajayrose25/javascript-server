@@ -12,3 +12,4 @@ export default function hasPermission(moduleName, role: string, permissionType: 
     return decide;
   }
   
+  
