@@ -2,8 +2,10 @@ import { Router } from 'express';
 import TraineeController from './Controller';
 import  { validationHandler }  from '../../libs/routes';
 import { validation } from './validation';
+// import {  authMiddleware }  from '../../libs/routes';
 import Controller from './Controller';
 const traineeRouter = Router();
+// authMiddleware('trainee', 'write'),
 
 traineeRouter.route('/')
 .get(validationHandler(validation.get), TraineeController.create)

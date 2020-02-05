@@ -14,18 +14,75 @@ export default (validation) => (req: Request, res: Response, next: NextFunction)
             console.log('value is', req[location][key]);
             return req[location][key];
         });
-        // if (keyData.regex.test('ajay rose')) {
-        // const ab = true;
-     // }
+
         console.log(values, 'values');
-        if ((keyData && keyData.required) && (keyData && keyData.string) && (keyData && keyData.regex && keyData.regex.test(name)) && (keyData && keyData.number) && (keyData && keyData.isObject)) {
-            console.log('your string is true');
-            console.log('your name is valid');
-            const validateValues = values.filter(item => item);
-            console.log(validateValues, 'validateValues');
-            if (values.length !== validateValues.length)
-            next({message: `${key} is required`});
+
+
+
+
+
+        if (keyData && keyData.required) {
+
+            if (keyData && keyData.string) {
+                console.log('your string is true');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.regex && keyData.regex.test(values[0])) {
+                console.log('your name is valid');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.regex && keyData.regex.test(values[0])) {
+                console.log('your string is true');
+                console.log('your name is valid');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.required) {
+                console.log('____deleted____');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.default === 0 && keyData.number) {
+                console.log('____IN SKIP____');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.default === 10 && keyData.number) {
+                console.log('____IN LIMIT____');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
+            if (keyData && keyData.isObject) {
+                console.log('____In Data to update ____');
+                const validateValues = values.filter(item => item);
+                console.log(validateValues, 'validateValues');
+                if (values.length !== validateValues.length)
+                    next({ message: `${key} is required` });
+            }
         }
+
+        /* if ((keyData && keyData.required) && (keyData && keyData.string) && (keyData && keyData.regex && keyData.regex.test(name)) && (keyData && keyData.number) && (keyData && keyData.isObject)) {
+             console.log('your string is true');
+             console.log('your name is valid');
+             const validateValues = values.filter(item => item);
+             console.log(validateValues, 'validateValues');
+             if (values.length !== validateValues.length)
+             next({message: `${key} is required`});
+         }*/
     });
     next();
 };
