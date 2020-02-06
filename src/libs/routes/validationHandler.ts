@@ -50,14 +50,14 @@ export default (validation) => (req: Request, res: Response, next: NextFunction)
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is invalid or it is not a number` });
+                    next({ message: `${key} is not a number` });
             }
             if (keyData && keyData.default === 10 && keyData.number) {
                 console.log('____IN LIMIT____');
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is invalid or it is not a number` });
+                    next({ message: `${key} is not a number` });
             }
             if (keyData && keyData.isObject) {
                 console.log('____In Data to update ____');
