@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import Iconfig from './config/iconfig';
 import { errorHandler, notFoundRoute } from './libs/routes';
 import router from './router';
+import Database from './libs/database';
 import { eventNames } from 'cluster';
 
 class Server {
@@ -17,13 +18,19 @@ class Server {
         return this;
     }
     run = () => {
-        const { app, config: { port, env } } = this;
-        app.listen(port, (err) => {
-            if (err) {
-                throw err;
-            }
-            console.log('app is running successfully on', { port }, { env });
+        const { app, config: { port, env, mongoUri } } = this;
+        Database.open(mongoUri).then((res) => {
+            app.listen(port, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log('app is running successfully on', { port }, { env });
+            });
+        }).catch(err => {
+            console.log(err);
+            throw err;
         });
+       
         app.use(notFoundRoute);
         app.use(errorHandler);
 
