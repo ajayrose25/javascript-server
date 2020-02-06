@@ -3,23 +3,25 @@ import * as jwt from 'jsonwebtoken';
 import config from '../../config/configuration';
 import   hasPermission  from './hasPermissions';
  
-export default (module, permissionType) => (req: Request, res: Response, next: NextFunction) => {
+export default (module, permissionType) => (req: Request, res: Response, next: NextFunction, decodedUser: number) => {
  try { console.log(':::::authMiddleware:::::', module, permissionType);
   const token: string = req.headers ['authorization'];
-  console.log('Jwt is', jwt);
-  const decodedUser = jwt.verify(token, config.secretKey);
+  console.log('Jwt is', );
+  const {secretKey: key} = config;
+  const decodedUser = jwt.verify(token, key);
+  console.log('Jwt is', decodedUser);
   if(!decodedUser){
     next({
       status: 403,
-      error: 'unauthorised access',
-      message: 'unauthorised access'
+      error: 'Unauthorized',
+      message: 'Unauthorised'
     });
   }
   if (!hasPermission(module, decodedUser.role, permissionType)) {
     next({
       status: 403,
-      error: 'unauthorised access',
-      message: 'trainee does not have permission'
+      error: 'Unauthorised',
+      message: 'Permission Denied'
     });
   }
   console.log('user is', decodedUser);
@@ -29,8 +31,9 @@ export default (module, permissionType) => (req: Request, res: Response, next: N
  catch (error) {
    next({
      status: 403,
-     error: 'unauthorised access',
+     error: 'Unauthorised',
      message: error.message
    });
  }
+ next();
 }; 
