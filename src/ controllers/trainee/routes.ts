@@ -5,7 +5,7 @@ import { validation } from './validation';
 import authMiddleware from '../../libs/routes/authMiddleware';
 import Controller from './Controller';
 import { permissions } from '../../libs/routes/constants';
-const traineeRouter = Router();
+const traineeRouter: Router = Router();
 // authMiddleware('trainee', 'write'),
 
 traineeRouter.route('/')
@@ -21,3 +21,6 @@ traineeRouter.delete('/:id', validationHandler(validation.delete), TraineeContro
 // TraineeController.delete(() => { console.log('Inside delete'); TraineeController.delete(); });
 
 export default traineeRouter;
+
+
+

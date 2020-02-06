@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import config from '../../config/configuration';
 import   hasPermission  from './hasPermissions';
  
-export default (module, permissionType) => (req: Request, res: Response, next: NextFunction, decodedUser: number) => {
+export default (module, permissionType) => (req: Request, res: Response, next: NextFunction) => {
  try { console.log(':::::authMiddleware:::::', module, permissionType);
   const token: string = req.headers ['authorization'];
   console.log('Jwt is', );
