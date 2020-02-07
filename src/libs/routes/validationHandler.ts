@@ -28,14 +28,7 @@ export default (validation) => (req: Request, res: Response, next: NextFunction)
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
-            }
-            if (keyData && keyData.regex && keyData.regex.test(values[0])) {
-                console.log('your name is valid');
-                const validateValues = values.filter(item => item);
-                console.log(validateValues, 'validateValues');
-                if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
+                    next({ message: `${key} should be string` });
             }
             if (keyData && keyData.regex && keyData.regex.test(values[0])) {
                 console.log('your string is true');
@@ -43,7 +36,7 @@ export default (validation) => (req: Request, res: Response, next: NextFunction)
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
+                    next({ message: `${key} is invalid` });
             }
             if (keyData && keyData.required) {
                 console.log('____deleted____');
@@ -57,21 +50,21 @@ export default (validation) => (req: Request, res: Response, next: NextFunction)
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
+                    next({ message: `${key} is not a number` });
             }
             if (keyData && keyData.default === 10 && keyData.number) {
                 console.log('____IN LIMIT____');
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
+                    next({ message: `${key} is not a number` });
             }
             if (keyData && keyData.isObject) {
                 console.log('____In Data to update ____');
                 const validateValues = values.filter(item => item);
                 console.log(validateValues, 'validateValues');
                 if (values.length !== validateValues.length)
-                    next({ message: `${key} is required` });
+                    next({ message: `${key} is not a object` });
             }
         }
 

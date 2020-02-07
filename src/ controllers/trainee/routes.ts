@@ -2,13 +2,14 @@ import { Router } from 'express';
 import TraineeController from './Controller';
 import  { validationHandler }  from '../../libs/routes';
 import { validation } from './validation';
-// import {  authMiddleware }  from '../../libs/routes';
+import authMiddleware from '../../libs/routes/authMiddleware';
 import Controller from './Controller';
-const traineeRouter = Router();
+import { permissions } from '../../libs/routes/constants';
+const traineeRouter: Router = Router();
 // authMiddleware('trainee', 'write'),
 
 traineeRouter.route('/')
-.get(validationHandler(validation.get), TraineeController.create)
+.get(authMiddleware(permissions.getUsers, 'read'), validationHandler(validation.get), TraineeController.create)
 .post(validationHandler(validation.create), TraineeController.list)
 .delete(TraineeController.delete)
 .put(validationHandler(validation.update), TraineeController.Update);
@@ -20,3 +21,6 @@ traineeRouter.delete('/:id', validationHandler(validation.delete), TraineeContro
 // TraineeController.delete(() => { console.log('Inside delete'); TraineeController.delete(); });
 
 export default traineeRouter;
+
+
+
