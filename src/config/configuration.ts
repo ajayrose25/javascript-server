@@ -9,6 +9,6 @@ const configuration: Iconfig = Object.freeze( {
     secretKey: process.env.SECRET_KEY
 });
 
-const {port, env, secretKey} = configuration;
+// const {port, env, secretKey} = configuration;
 
 export default configuration;
