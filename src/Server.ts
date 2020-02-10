@@ -3,7 +3,7 @@ import * as bodyParser from 'body-parser';
 import Iconfig from './config/iconfig';
 import { errorHandler, notFoundRoute } from './libs/routes';
 import router from './router';
-import Database from './libs/database';
+import Database from './libs/Database';
 import { eventNames } from 'cluster';
 
 class Server {
