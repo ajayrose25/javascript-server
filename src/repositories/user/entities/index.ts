@@ -1,0 +1,1 @@
+export { default as IUserCreate } from './../entities/IUserCreate';
