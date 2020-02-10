@@ -13,7 +13,7 @@ class Database {
                 resolve({ name: 'data' });
                 console.log('database connected successfully');
             });
-        })
+        });
     }
     static disconnect = () => {
         mongoose.connection.close();

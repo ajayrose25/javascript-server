@@ -21,7 +21,7 @@ class UserController {
             this.userRepository.create({
                 email, name, address, hobbies, dob, mobileNumber
             }).then(user => {
-                return SystemResponse.success(res, user, 'trainee added successfully');
+                return SystemResponse.success(res, user, 'user added successfully');
             }).catch(error => {
                 throw error;
             })
@@ -32,43 +32,54 @@ class UserController {
     };
     list = (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::list Trainee:::::::');
-        const listobj = {
-            status: 'Ok',
-            message: 'Trainee added',
-            details: [{
-                id: 2,
-                name: 'Rahul',
-                address: 'Shahdra',
-            }]
-        };
-        res.send(listobj);
+        try {
+            const { _id } = req.query;
+            this.userRepository.list(_id).then(user => {
+                this.userRepository.list(_id).then(user => {
+                return SystemResponse.success(res, user, 'user listed successfully');});
+            }).catch(error => {
+                throw error;
+            });
+        }
+        catch (err) {
+
+        }
     };
     Update = (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::Update Trainee:::::::');
-        const updateobj = {
-            status: 'Ok',
-            message: 'Trainee Updated',
-            details: [{
-                id: 3,
-                name: 'Shivam',
-                address: 'Karol Bagh'
-            }]
-        };
-        res.send(updateobj);
+        try {
+            const { id, dataToUpdate } = req.body;
+            this.userRepository.update({ _id: id }, dataToUpdate).then(user => {
+                this.userRepository.findUpdate({ _id: id })
+                .then(user => {
+                    return SystemResponse.success(res, user, 'user updated successfully');
+                }).catch(err => {
+                    throw err;
+                });
+            }).catch(err => {
+                throw err;
+            });
+
+        }
+        catch (err) {
+
+        }
     };
     delete = (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::Delete Trainee:::::::');
-        const deleteobj = {
-            status: 'Ok',
-            message: 'Trainee deleted',
-            details: [{
-                id: 4,
-                name: 'permil',
-                address: 'Rohini',
-            }]
-        };
-        res.send(deleteobj);
+        try {
+            const { _id } = req.params;
+            this.userRepository.delete({ _id }).then(user => {
+                this.userRepository.delete(_id).then(user => {
+                return SystemResponse.success(res, user, 'user deleted successfully');});
+            }).catch(error => {
+                throw error;
+            });
+        }
+        catch (err) {
+
+        }
     };
 }
 
-export default  UserController.getInstance();
+    export default  UserController.getInstance();

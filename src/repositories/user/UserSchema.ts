@@ -16,3 +16,4 @@ class UserSchema extends mongoose.Schema {
   }
 }
 export default UserSchema;
+

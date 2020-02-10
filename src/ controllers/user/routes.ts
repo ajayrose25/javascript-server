@@ -9,16 +9,12 @@ const userRouter: Router = Router();
 // authMiddleware('trainee', 'write'),
 
 userRouter.route('/')
-.get(authMiddleware(permissions.getUsers, 'read'), validationHandler(validation.get), UserController.create)
-.post(validationHandler(validation.create), UserController.list)
-.delete(UserController.delete)
-.put(validationHandler(validation.update), UserController.Update);
+.get(authMiddleware(permissions.getUsers, 'all'), validationHandler(validation.get), UserController.list)
+.post(authMiddleware(permissions.getUsers, 'all'), validationHandler(validation.create), UserController.create)
+.delete(authMiddleware(permissions.getUsers, 'all'), UserController.delete)
+.put(authMiddleware(permissions.getUsers, 'all'), validationHandler(validation.update), UserController.Update);
 userRouter.delete('/:id', validationHandler(validation.delete), UserController.delete);
-// traineeRouter.post('/:var', validationHandler(validation.create), TraineeController.list);
-// TraineeController.get((TraineeController.create()) => { console.log('Inside get');  });
-// TraineeController.post(() => { console.log('Inside post');TraineeController.list(); });
-// TraineeController.put(() => { console.log('Inside put'); TraineeController.update(); });
-// TraineeController.delete(() => { console.log('Inside delete'); TraineeController.delete(); });
+userRouter.get('/:id', validationHandler(validation.get), UserController.list);
 
 export default userRouter;
 

@@ -1,4 +1,3 @@
-import { IUserCreate } from './entities';
 import { UserModel } from './UserModel';
 import * as mongoose from 'mongoose';
 import IUserModel from './IUserModel';
@@ -11,14 +10,23 @@ class UserRepository {
     create = (data) => {
         return this.UserModel.create(data);
     }
-    update = () => {
+    findUpdate = (data) => {
+        return this.UserModel.findById(data); 
+    }
+    update = (_id, data) => {
+        return this.UserModel.update(_id, data);
+    }
+    count = () => {
+        console.log('Inside count');
+        return this.UserModel.countDocuments();
+    }
+    list = (_id) => {
+        return this.UserModel.find(_id);
 
     }
-    list = () => {
-
-    }
-    delete = () => {
-
+    delete = (id) => {
+        return this.UserModel.deleteOne(id);
     }
 }
 export default UserRepository;
+

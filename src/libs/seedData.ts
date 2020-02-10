@@ -6,20 +6,20 @@ export default() => {
     const user = {
         name: 'Head Trainer',
         address: 'Noida',
-        dob: new Date ('25-01-1999'),
-        email: 'ajay.rose@successive.tech',
-        mobileNumber: 8920422537,
-        hobbies: ['Reading']
+        dob: new Date(),
+        email: 'vinay@nodeperts.com',
+        mobileNumber: 8925558880,
+        hobbies: ['Touring']
     };
-this.userRepository.count()
-.then ((count) => {
-    console.log('count is', count);
-    if(!count) {
-       return this.userRepository.create(user)
-       .then((res) => {
-           console.log('user seeded successfully', res);
-        });
-    }
-    console.log('user already exists');
-});
+userRepository.count()
+.then ((result: number) => {
+    console.log('count is', result);
+    if (!result) {
+       userRepository.create(user);
+        console.log('user seeded successfully');
+        }
+}).catch((err) => {
+        console.log('Data is seeded already', err);
+    });
 };
+
