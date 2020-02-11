@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-import { userSchema } from './UserModel';
 
 class UserSchema extends mongoose.Schema {
   constructor(options) {
@@ -7,6 +6,7 @@ class UserSchema extends mongoose.Schema {
       id: String,
       name: String,
       address: String,
+      role: String,
       email: String,
       dob: Date,
       mobileNumber: Number,

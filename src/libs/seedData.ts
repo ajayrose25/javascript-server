@@ -1,6 +1,4 @@
-import UserRepository from '../repositories/user/UserRepository';
-
-const userRepository = new UserRepository();
+import userRepository from '../repositories/user/UserRepository';
 
 export default() => {
     const user = {
