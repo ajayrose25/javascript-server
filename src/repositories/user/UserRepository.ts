@@ -22,7 +22,7 @@ class UserRepository {
     findUpdate = (data) => {
         return this.UserModel.findOne(data);
     }
-    findOne = data => {
+    getById = data => {
         return this.UserModel.findById(data);
     }
     update = (_id, data) => {
@@ -32,7 +32,7 @@ class UserRepository {
         console.log('Inside count');
         return this.UserModel.countDocuments();
     }
-    list = (_id) => {
+    getAll = (_id) => {
         return this.UserModel.find(_id);
 
     }

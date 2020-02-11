@@ -18,10 +18,11 @@ class UserController {
     create = (req: Request, res: Response, next: NextFunction) => {
         try {
             const { email, name, address, hobbies, dob, mobileNumber } = req.body;
+            const data = { email, name, address, hobbies, dob, mobileNumber };
             userRepository.create({
-                email, name, address, hobbies, dob, mobileNumber
-            }).then(user => {
-                return SystemResponse.success(res, user, 'user added successfully');
+                data
+            }).then(result => {
+                return SystemResponse.success(res, result, 'user added successfully');
             }).catch(error => {
                 throw error;
             });
@@ -30,14 +31,15 @@ class UserController {
             console.log('error');
         }
     };
-    list = (req: Request, res: Response, next: NextFunction) => {
+    getAll = (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::list Trainee:::::::');
         try {
             const { _id } = req.query;
-            userRepository.list(_id).then(user => {
+            userRepository.getAll(_id).then(result => {
                 // userRepository.list(_id).then(user => {
-                return SystemResponse.success(res, user, 'user listed successfully');
-
+                console.log('resulttttttttttttt',result);
+                const [{ _id }] = result;
+                return SystemResponse.success(res, _id, 'user listed successfully');
             }).catch(error => {
                 throw error;
             });
@@ -52,8 +54,9 @@ class UserController {
             const { id, dataToUpdate } = req.body;
             userRepository.update({ _id: id }, dataToUpdate)// .then(user => {
                 //  userRepository.update(id, dataToUpdate)
-                .then(user => {
-                    return SystemResponse.success(res, user, 'user updated successfully');
+                .then(result => {
+                    const [{ _id }] = result;
+                    return SystemResponse.success(res, _id, 'user updated successfully');
                 }).catch(err => {
                     throw err;
 
@@ -71,8 +74,8 @@ class UserController {
         try {
             const { _id } = req.params;
             // userRepository.delete({ _id }).then(user => {
-            userRepository.delete(_id).then(user => {
-                return SystemResponse.success(res, user, 'user deleted successfully');
+            userRepository.delete(_id).then(result => {
+                return SystemResponse.success(res, result, 'user deleted successfully');
 
             }).catch(error => {
                 throw error;

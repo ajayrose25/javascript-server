@@ -30,7 +30,7 @@ export default (module, permissionType) => async (req: IRequest, res: Response, 
     }
     const { _id, email } = decodedUser;
     await userRepository
-      .findOne({_id,email})
+      .getById({_id,email})
       .then(user => {
         if (!user) {
           next({
