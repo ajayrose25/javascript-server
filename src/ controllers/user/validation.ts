@@ -15,6 +15,31 @@ export const validation = {
             regex: /([a-zA-Z])+ ([a-zA-Z])+$/,
             in: ['body'],
             errorMessage: 'Name is required',
+        },
+        address: {
+            required: true,
+            string: false,
+            in: ['body'],
+        },
+        email: {
+            required: true,
+            string: true,
+            in: ['body'],
+        },
+        dob: {
+            required: true,
+            number: true,
+            in: ['body'],
+        },
+        mobileNumber: {
+            required: true,
+            number: true,
+            in: ['body'],
+        },
+        hobbies: {
+            required: true,
+            string: true,
+            in: ['body'],
         }
     },
     delete: {

@@ -10,9 +10,9 @@ const traineeRouter: Router = Router();
 
 traineeRouter.route('/')
 .get(authMiddleware(permissions.getUsers, 'read'), validationHandler(validation.get), TraineeController.create)
-.post(validationHandler(validation.create), TraineeController.list)
-.delete(TraineeController.delete)
-.put(validationHandler(validation.update), TraineeController.Update);
+.post(authMiddleware(permissions.getUsers, 'write'), validationHandler(validation.create), TraineeController.list)
+.delete(authMiddleware(permissions.getUsers, 'read'), TraineeController.delete)
+.put(authMiddleware(permissions.getUsers, 'write'), validationHandler(validation.update), TraineeController.Update);
 traineeRouter.delete('/:id', validationHandler(validation.delete), TraineeController.delete);
 // traineeRouter.post('/:var', validationHandler(validation.create), TraineeController.list);
 // TraineeController.get((TraineeController.create()) => { console.log('Inside get');  });

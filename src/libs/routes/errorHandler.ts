@@ -1,17 +1,18 @@
-const errorHandler = ((err, req, res, next) => {
-    console.log('Error', err);
+import{ Request, Response, NextFunction } from 'express';
 
-    const { error, message, status, timestamp } = err;
+const errorHandler = ((err: Error, req: Request, res: Response, next: NextFunction) => {
+    console.log('Error', err);
     const obj = {
-        error: Error || 'undefined',
-        message: err.error || err.message,
+        error: err.message || 'undefined',
+        message: err || err.message,
         status: 500,
         timestamp: new Date()
     };
+    const { error, message, status, timestamp } = obj;
      res.send({
         obj
      });
-    if (!req.headerSent) {
+    if (!res.headersSent) {
         return next(error);
     }
 });
