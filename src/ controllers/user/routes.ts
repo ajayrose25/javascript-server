@@ -17,11 +17,11 @@ userRouter.route('/')
 userRouter.delete('/:id', validationHandler(validation.delete), UserController.delete);
 userRouter.get('/:id', authMiddleware(permissions.getUsers, 'all'), validationHandler(validation.get), UserController.getAll);
 
-//userRouter.route('/new/me')
-//.get(authMiddleware(permissions.getUsers, 'all'),(req: IRequest,res)=>{
-  //  console.log('inside routes>>>>>>>>>>>>>>>>>>>>>');
-    //res.send(req.user);
-//})
+userRouter.route('/new/me')
+.get(authMiddleware(permissions.getUsers, 'all'), (req: IRequest, res) => {
+    console.log('inside routes>>>>>>>>>>>>>>>>>>>>>');
+    res.send(req.user);
+});
 export default userRouter;
 
 

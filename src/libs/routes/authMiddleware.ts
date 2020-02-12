@@ -30,13 +30,13 @@ export default (module, permissionType) => async (req: IRequest, res: Response, 
     }
     const { _id, email } = decodedUser;
     await userRepository
-      .getById({_id,email})
+      .getById({_id, email})
       .then(user => {
         if (!user) {
           next({
             status: 403,
             error: 'Unauthorized Access',
-            message: 'User does not Exist in the System'
+            message: 'Permission Denied'
           });
         }
         req.user = user;
