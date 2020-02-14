@@ -18,6 +18,8 @@ export default (module, permissionType) => async (req: IRequest, res: Response, 
       });
     }
     const { secretKey: key } = config;
+    console.log(key, "key>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(token, "TOKEN>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     const decodedUser = jwt.verify(token, key);
     const { role } = decodedUser;
     console.log('decoded', decodedUser);
@@ -29,7 +31,7 @@ export default (module, permissionType) => async (req: IRequest, res: Response, 
       });
     }
     const { _id, email } = decodedUser;
-    await userRepository
+    await new userRepository()
       .getById({_id, email})
       .then(user => {
         if (!user) {
@@ -39,7 +41,9 @@ export default (module, permissionType) => async (req: IRequest, res: Response, 
             message: 'Permission Denied'
           });
         }
-        req.user = user;
+        console.log("[{{{{{{{{{{{{{{{{{{{{{{{{{{{{",user, "useruseruser}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}")
+        console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}",req.user, "req.userreq.user{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{{")
+        // req.user = user;
       })
       .then(() => {
         if (!hasPermission(module, role, permissionType)) {

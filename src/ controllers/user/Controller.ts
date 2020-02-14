@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
-import userRepository from '../../repositories/user/UserRepository';
 import SystemResponse from '../../libs/SystemResponse';
+import UserRepository from '../../repositories/user/UserRepository';
 
 class UserController {
     static instance: UserController;
-    // static userRepository: UserRepository;
-
-    // userRepository = new UserRepository();
-
+    private userRepository: UserRepository;
+    private instance: UserController;
+    constructor() {
+    this.userRepository = new UserRepository();
+    }
     static getInstance = () => {
         if (UserController.instance) {
             return UserController.instance;
@@ -18,10 +19,15 @@ class UserController {
     create = (req: Request, res: Response, next: NextFunction) => {
         try {
             const { email, name, address, hobbies, dob, mobileNumber } = req.body;
-            const data = { email, name, address, hobbies, dob, mobileNumber };
-            userRepository.create({
-                data
-            }).then(result => {
+            // const data = { email, name, address, hobbies, dob, mobileNumber };
+            this.userRepository.create({
+                email,
+                name,
+                address,
+                hobbies,
+                dob,
+                mobileNumber,
+            }).then(result => { console.log('result', result);
                 return SystemResponse.success(res, result, 'user added successfully');
             }).catch(error => {
                 throw error;
@@ -35,7 +41,7 @@ class UserController {
         console.log(':::::::list Trainee:::::::');
         try {
             const { _id } = req.query;
-            userRepository.getAll(_id).then(result => {
+            this.userRepository.getAll().then(result => {
                 // userRepository.list(_id).then(user => {
                 console.log('resulttttttttttttt',result);
                 const [{ _id }] = result;
@@ -52,11 +58,12 @@ class UserController {
         console.log(':::::::Update Trainee:::::::');
         try {
             const { id, dataToUpdate } = req.body;
-            userRepository.update({ _id: id }, dataToUpdate)// .then(user => {
+            this.userRepository.update({ _id: id }, dataToUpdate)// .then(user => {
                 //  userRepository.update(id, dataToUpdate)
                 .then(result => {
-                    const [{ _id }] = result;
+                    const { _id } = result;
                     return SystemResponse.success(res, _id, 'user updated successfully');
+                    
                 }).catch(err => {
                     throw err;
 
@@ -72,9 +79,11 @@ class UserController {
     delete = (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::Delete Trainee:::::::');
         try {
-            const { _id } = req.params;
+            console.log(req.params, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>====")
+            const { id } = req.params;
+            console.log(id, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             // userRepository.delete({ _id }).then(user => {
-            userRepository.delete(_id).then(result => {
+            this.userRepository.delete({_id: id}).then(result => {
                 return SystemResponse.success(res, result, 'user deleted successfully');
 
             }).catch(error => {

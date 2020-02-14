@@ -2,7 +2,7 @@ export const validation = {
     create:
     {
         id: {
-            required: true,
+            required: false,
             string: true,
             in: ['body'],
             custom: ((value) => {

@@ -1,44 +1,54 @@
 import { UserModel } from './UserModel';
 import * as mongoose from 'mongoose';
 import IUserModel from './IUserModel';
+import VersionableRepository from '../versionable/VersionableRepository';
 
-class UserRepository {
-    static instance: UserRepository;
-    static getInstance = () => {
-        if (UserRepository.instance) {
-            return UserRepository.instance;
-        }
-        UserRepository.instance = new UserRepository();
-        return UserRepository.instance;
-    }
-
+export default class UserRepository extends VersionableRepository < IUserModel, mongoose.Model <IUserModel>> {
+    // static instance: UserRepository;
+    private UserRepository: UserRepository;
     private UserModel: mongoose.Model<IUserModel>;
     constructor() {
+        super(UserModel);
         this.UserModel = UserModel;
     }
-    create = (data) => {
-        return this.UserModel.create(data);
+   // static getInstance = () => {
+     //    if (UserRepository.instance) {
+       //      return UserRepository.instance;
+       //  }
+       //  UserRepository.instance = new UserRepository();
+       //  return UserRepository.instance;
+    // }
+    public static generateObjectId() {
+        return String(mongoose.Types.ObjectId());
     }
+
+    public count() {
+        return super.count();
+    }
+
+    public create(data: any) {
+        console.log('data', data);
+        return super.create(data);
+    }
+    // create = (data) => {
+    //     return this.UserModel.create(data);
+    // }
+
     findUpdate = (data) => {
         return this.UserModel.findOne(data);
     }
     getById = data => {
-        return this.UserModel.findById(data);
+        return this.UserModel.find(data);
     }
     update = (_id, data) => {
-        return this.UserModel.update(_id, data);
+        return super.update(_id, data);
     }
-    count = () => {
-        console.log('Inside count');
-        return this.UserModel.countDocuments();
+    getAll = () => {
+        return super.getAll();
     }
-    getAll = (_id) => {
-        return this.UserModel.find(_id);
-
-    }
-    delete = (id) => {
-        return this.UserModel.deleteOne(id);
+    delete = (_id) => {
+        return super.delete(_id);
     }
 }
-export default UserRepository.getInstance();
+// export default UserRepository.getInstance();
 

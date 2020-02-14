@@ -1,4 +1,4 @@
-import userRepository from '../repositories/user/UserRepository';
+import UserRepository from '../repositories/user/UserRepository';
 
 export default() => {
     const user = {
@@ -9,6 +9,7 @@ export default() => {
         mobileNumber: 8925558880,
         hobbies: ['Touring']
     };
+    const userRepository = new UserRepository();
 userRepository.count()
 .then ((result: number) => {
     console.log('count is', result);
