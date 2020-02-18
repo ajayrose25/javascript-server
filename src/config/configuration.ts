@@ -3,14 +3,17 @@ import Iconfig from './iconfig';
 
 config();
 
-const { env: { PORT, NODE_ENV, SECRET_KEY, MONGO_URL }} = process;
+const { env: { PORT, NODE_ENV, SECRET_KEY, MONGO_URL, PASSWORD }} = process;
 
+
+console.log("?????????????????", SECRET_KEY, PASSWORD)
 
 const configuration: Iconfig = Object.freeze({
     port: PORT,
     env: NODE_ENV,
     secretKey: SECRET_KEY,
-    mongoUri: MONGO_URL
+    mongoUri: MONGO_URL,
+    password: PASSWORD
 });
 
 // const {port, env, secretKey, mongoUri} = configuration;
