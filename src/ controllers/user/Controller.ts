@@ -6,7 +6,7 @@ import configuration from '../../config/configuration';
 import * as jwt from 'jsonwebtoken';
 import user from '../../libs/seedData';
 import { config } from 'dotenv/types';
-import {hashValue} from '../../libs/seedData';
+import { hashValue } from '../../libs/seedData';
 
 class UserController {
     static instance: UserController;
@@ -22,33 +22,31 @@ class UserController {
         UserController.instance = new UserController();
         return UserController.instance;
     }
-    create = (req: Request, res: Response, next: NextFunction) => {
+    create = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { email, name, address, hobbies, dob, mobileNumber } = req.body;
             // const data = { email, name, address, hobbies, dob, mobileNumber };
-            this.userRepository.create({
+            const result = await this.userRepository.create({
                 email,
                 name,
                 address,
                 hobbies,
                 dob,
                 mobileNumber,
-            }).then(result => {
+            });
                 console.log('result', result);
                 return SystemResponse.success(res, result, 'user added successfully');
-            }).catch(error => {
-                throw error;
-            });
-        }
+            }
+        
         catch (err) {
             console.log('error');
         }
-    };
-    getAll = (req: Request, res: Response, next: NextFunction) => {
+    }
+    getAll = async (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::list Trainee:::::::');
         try {
-            const { _id } = req.query;
-            this.userRepository.getAll().then(result => {
+            // const { _id } = req.query;
+    const result = await this.userRepository.getAll().then(result => {
                 // userRepository.list(_id).then(user => {
                 console.log('resulttttttttttttt', result);
                 const [{ _id }] = result;
@@ -61,51 +59,43 @@ class UserController {
             console.log('error');
         }
     };
-    Update = (req: Request, res: Response, next: NextFunction) => {
+    Update = async (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::Update Trainee:::::::');
         try {
             const { id, dataToUpdate } = req.body;
-            this.userRepository.update({ _id: id }, dataToUpdate)// .then(user => {
+        const result = await this.userRepository.update({ _id: id }, dataToUpdate); // .then(user => {
                 //  userRepository.update(id, dataToUpdate)
-                .then(result => {
                     const { _id } = result;
                     return SystemResponse.success(res, _id, 'user updated successfully');
-
-                }).catch(err => {
-                    throw err;
-
-                }).catch(err => {
-                    throw err;
-                });
-
-        }
+ }
         catch (err) {
             console.log('error');
         }
     };
-    delete = (req: Request, res: Response, next: NextFunction) => {
+    delete = async (req: Request, res: Response, next: NextFunction) => {
         console.log(':::::::Delete Trainee:::::::');
         try {
-            console.log(req.params, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>====")
+            console.log(req.params, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>====');
             const { id } = req.params;
-            console.log(id, ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            console.log(id, '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
             // userRepository.delete({ _id }).then(user => {
-            this.userRepository.delete({ _id: id }).then(result => {
-                return SystemResponse.success(res, result, 'user deleted successfully');
-
-            }).catch(error => {
-                throw error;
-            });
+            const result = await this.userRepository.delete({ _id: id });
+                return SystemResponse.success(res, result, 'user deleted successfully')
         }
         catch (err) {
             console.log('error');
         }
-    };
+    }
     login = async (req: Request, res: Response, next: NextFunction) => {
         const { email, password } = req.body;
         const users = await this.userRepository.getById({email});
-    
-            bcrypt.compare(password, hashValue, (err, result) => {
+        if (!users) {
+            next ({
+                error: 'password does not match',
+                status: 422
+            });
+                }
+               bcrypt.compare(password, hashValue, (err, result) => {
                 console.log('result', res, password);
                 // console.log('password.hash',hash);
                 // console.log('errorrrr',err);
